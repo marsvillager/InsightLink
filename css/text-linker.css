@@ -1,0 +1,12 @@
+.container {
+    text-align: center;
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+
+#input1, #input2 {
+    height: 60vh; 
+    width: 60vh;
+}
