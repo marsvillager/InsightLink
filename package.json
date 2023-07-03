@@ -1,0 +1,26 @@
+{
+  "name": "insightlink",
+  "version": "1.0.0",
+  "description": "通过深入分析数据，揭示变量之间的潜在关联和相互影响，用户可以使用该应用来探索数据中隐藏的模式和趋势，并通过建立关联度指标准确评估变量之间的关系强度",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marsvillager/InsightLink.git"
+  },
+  "keywords": [
+    "embeddings"
+  ],
+  "author": "xuyi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marsvillager/InsightLink/issues"
+  },
+  "homepage": "https://github.com/marsvillager/InsightLink#readme",
+  "devDependencies": {
+    "electron": "^25.2.0"
+  }
+}
