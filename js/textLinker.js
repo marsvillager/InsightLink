@@ -1,7 +1,6 @@
-async function getEmbeddings(input) {
-    // const OPENAI_API_KEY = 'your-api-key';
-    const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = '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';
 
+async function getEmbeddings(input) {
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${OPENAI_API_KEY}`,
@@ -22,7 +21,6 @@ async function getEmbeddings(input) {
         const response = await fetch('https://api.openai.com/v1/embeddings', requestOptions);
         const data = await response.json();
         const vectList = data.data[0].embedding;
-        console.log(vectList);
 
         return vectList; // 返回 vectList
     } catch (error) {
@@ -31,18 +29,51 @@ async function getEmbeddings(input) {
     }
 }
 
-function calculateSimilarity() {
+async function calculateSimilarity() {
+    // document.getElementById("result").innerHTML = "⌛️"
+    document.getElementById("result").innerHTML = "<img src='./assets/loading.png' alt='loading' class='inline-image'>"
+
     var input1 = document.getElementById("input1").value;
     var input2 = document.getElementById("input2").value;
 
-    var similarity = calculateSimilarityExternally(input1, input2);
+    // embeddings
+    var embedding1 = await getEmbeddings(input1)
+    var embedding2 = await getEmbeddings(input2)
+    console.log(embedding1)
+    console.log(embedding2)
+
+    var similarity = cosineSimilarity(embedding1, embedding2);
 
     document.getElementById("result").innerHTML = "Similarity: " + similarity;
 }
 
-function calculateSimilarityExternally(text1, text2) {
-    console.log(getEmbeddings(text1))
-    console.log(getEmbeddings(text2))
+// 计算两个向量的点积
+function dotProduct(vector1, vector2) {
+    var dot = 0;
+    for (var i = 0; i < vector1.length; i++) {
+        dot += vector1[i] * vector2[i];
+    }
+    return dot;
+}
 
-    return 0.75;
+// 计算向量的范数（Euclidean norm）
+function norm(vector) {
+    var sumOfSquares = 0;
+    for (var i = 0; i < vector.length; i++) {
+        sumOfSquares += vector[i] * vector[i];
+    }
+    return Math.sqrt(sumOfSquares);
+}
+
+// 计算余弦相似度
+function cosineSimilarity(embedding1, embedding2) {
+    var dot = dotProduct(embedding1, embedding2);
+    console.log("Dot Product:\n" + dot)
+
+    var norm1 = norm(embedding1);
+    var norm2 = norm(embedding2);
+    console.log("Euclidean Norm:\n" + norm1)
+    console.log("Euclidean Norm:\n" + norm2)
+
+    return dot / (norm1 * norm2);
 }
