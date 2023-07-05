@@ -30,7 +30,6 @@ async function getEmbeddings(input) {
 }
 
 async function calculateSimilarity() {
-    // document.getElementById("result").innerHTML = "⌛️"
     document.getElementById("result").innerHTML = "<img src='./assets/loading.png' alt='loading' class='inline-image'>"
 
     var input1 = document.getElementById("input1").value;
