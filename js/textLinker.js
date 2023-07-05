@@ -1,4 +1,4 @@
-const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = 'your-api-key';
 
 async function getEmbeddings(input) {
     const headers = {
