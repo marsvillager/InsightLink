@@ -1,12 +1,44 @@
+.header {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+}
+
+.navigate {
+    text-decoration: none;
+    color: #666666;
+}
+
+.navigate:hover {
+    color: #2980B9;
+    /* 悬浮时的颜色 */
+}
+
 .container {
     text-align: center;
 }
 
 .input-container {
+    display: flex;
     margin-bottom: 20px;
 }
 
-#input1, #input2 {
-    height: 60vh; 
+.input-container #input1 {
+    margin-right: 50px;
+}
+
+button {
+    border: none;
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #666666;
+}
+
+#input1,
+#input2 {
+    height: 60vh;
     width: 60vh;
 }

@@ -1,24 +1,48 @@
-function calculateSimilarity() {
-    console.log("rgerger")
+async function getEmbeddings(input) {
+    // const OPENAI_API_KEY = 'your-api-key';
+    const OPENAI_API_KEY = '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';
 
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`,
+    };
+
+    const data = {
+        "model": "text-embedding-ada-002",
+        "input": input
+    };
+
+    const requestOptions = {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(data)
+    };
+
+    try {
+        const response = await fetch('https://api.openai.com/v1/embeddings', requestOptions);
+        const data = await response.json();
+        const vectList = data.data[0].embedding;
+        console.log(vectList);
+
+        return vectList; // 返回 vectList
+    } catch (error) {
+        console.error(error);
+        throw error; // 抛出错误
+    }
+}
+
+function calculateSimilarity() {
     var input1 = document.getElementById("input1").value;
     var input2 = document.getElementById("input2").value;
 
-    console.log(input1)
-    console.log(input2)
-
-    // 这里是调用外部相似度计算的逻辑
     var similarity = calculateSimilarityExternally(input1, input2);
 
     document.getElementById("result").innerHTML = "Similarity: " + similarity;
 }
 
 function calculateSimilarityExternally(text1, text2) {
-    // 这里是调用外部JavaScript文件进行相似度计算的代码
-    // 可以根据你选择的相似度计算方法和第三方库进行实现
-    // 使用相关函数和参数来计算并返回相似度结果
-    // 这个函数要确保可以在 text-linker.html 中正确被调用
+    console.log(getEmbeddings(text1))
+    console.log(getEmbeddings(text2))
 
-    // 假设这是一个示例结果，可以根据实际情况进行修改
     return 0.75;
 }
