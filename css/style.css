@@ -18,10 +18,10 @@ p {
   font-size: 18px;
   margin-bottom: 30px;
   color: #666666;
-  white-space: pre;
 }
 
 .button {
+  width: 280px;
   display: inline-block;
   padding: 12px 24px;
   background-color: #3498DB;
